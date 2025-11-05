@@ -1,0 +1,84 @@
+% !TeX spellcheck = en_GB
+\documentclass[10pt,respuestas,a4]{aleph-examen}
+%\documentclass[10pt,a4]{aleph-examen}
+% Intercambiar el comentario de las primeras lineas
+% para mostrar/ocultar respuestas
+
+% Se recomienda leer la documentación de esta
+% clase en https://github.com/alephsub0/LaTeX_aleph-examen
+
+% -- Paquetes
+%\usepackage{aleph-comandos}
+\usepackage{physics}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+
+% -- Datos del examen
+\institucion{Exercise 4.2 Checkboard}
+% \carrera{}
+\asignatura{Applied Deep Learning in Physics and Engineering (1FA370)}
+\tema{Building Blocks of Neural Networks}
+\autor{Damián López Hermida \& Adrián Silva Caballero}
+\fecha{Autumn 2025}
+
+\logouno[2.5cm]{Logos/uu_logo}
+\xdefinecolor{colortext}{RGB}{151,31,48}
+\definecolor{colordef}{HTML}{0030A1}
+\fuente{montserrat}
+
+% -- Comandos extra
+% \geometry{margin=2cm} % - Para cambiar los márgenes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\encabezado
+
+Open the Tensorflow Playground (\href{https://playground.tensorflow.org/#activation=relu&batchSize=10&dataset=xor&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.01348&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false}{playground.tensorflow.org}) and select on the left the checkerboard pattern as the data basis. The data is taken from a two-dimensional probability distribution and is represented by the value pairs x1 and x2. The regions x1, x2 > 0 and xi, x2 < 0 are shown by one color. For value pairs with x1 > 0, x2 < 0 and x1 < 0, x2 > 0, the regions are indicated by a different color.
+
+In features, select the two independent variables x1 and x2 and start the network training. The network learns that x1 and x2 are for these data not independent variables, but are taken from the probability distribution of the checkerboard pattern.
+
+
+
+
+\begin{preguntas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \label{Q1}
+   Try various settings for the number of layers and neurons using ReLU as activation function. What is the smallest network that gives a good fit result?
+
+\begin{respuesta}
+	
+    The smallest neural network (NN) that was seen to provide an accurate classification was one with a single hidden layer and three neurons. Smaller than that, the NN was unable to correctly classify the data. Nonetheless, this NN did not consistently correctly classified the data as it was highly dependant on having a good set of neurons that capture well the differences. The safest and most consistent NN was one with a single hidden layer and four neurons.
+    
+\end{respuesta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \label{Q2}
+What do you observe when training networks with the same settings multiple times? Explain your observations.
+
+\begin{respuesta}
+	
+	When the same network is trained with the same settings multiple times one can visualize that the results differ slightly from one try to the other. This is most likely due to the random weight initialization of the neural network. This random weight initialization is probably given by a random seed that changes after each run. In this same line, from observation it was seen that if the browser is refreshed, given the same parameters, the same/original behaviour is seen again, reinforcing this hypothesis.
+\end{respuesta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \label{Q3}
+Try additional input features: Which one is most helpful?
+
+\begin{respuesta}
+	
+	The most helpful feature for this classification problem with the given dataset was x1x2, as even with one neuron in a single hidden layer it was able to correctly classify the dataset. Furthermore, as the x1x2 feature is such a good classification parameter for the given dataset even if the hidden layer is dropped completely, and also even if x1 and x2 features are dropped, the x1x2 feature will be able to by its own to classify correctly the data.
+\end{respuesta}
+
+
+\end{preguntas}
+
+\end{document}

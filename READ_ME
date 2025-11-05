@@ -1,0 +1,16 @@
+HOW TO SETUP
+Considering you already have conda installed you simply need to
+"conda create -n ADL --file ADL_env_requirements.txt"
+This will create a conda env "ADL" by the "ADL_evrequirements.txt" file
+Always double check that nothing has been modified in the requirements.
+This will be the case if anybody adds further packages to the conda env
+But needs to be manually updated by
+"conda list -e > ADL_env_requirements.txt"
+Which will update the requirements with the one in your env.
+Always double check you're in the right environment 
+
+To launch the jupyter notebook make sure you're inside the env and use
+"jupyter-notebook &"
+This should open a web browser.
+Once you made changes that you're happy with save them in git and push them,
+Before pushing always pull to verify your changes will not collide with someone else

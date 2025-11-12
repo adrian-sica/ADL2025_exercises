@@ -12,6 +12,7 @@
 \usepackage{physics}
 \usepackage{hyperref}
 \usepackage[capitalise]{cleveref}
+\usepackage{subcaption}
 
 % -- Datos del examen
 \institucion{Exercise 6.1 Regularization}
@@ -47,8 +48,35 @@ Open the Tensorflow Playground (\href{https://playground.tensorflow.org/#activat
 
 \begin{respuesta}
 	
+	\begin{figure}[!htpb]
+		\begin{center}
+			\begin{subfigure}{.25\textwidth}
+				\centering
+				\includegraphics[width=0.99\linewidth]{Logos/Q1_e1k}
+				\caption{Epoch $\approx1000$}
+				\label{Fig_E1k}
+			\end{subfigure}
+			\begin{subfigure}{.25\textwidth}
+				\centering
+				\includegraphics[width=0.99\linewidth]{Logos/Q1_e10k}
+				\caption{Epoch $\approx10000$}
+				\label{Fig_E10k}
+			\end{subfigure}
+			\begin{subfigure}{.25\textwidth}
+				\centering
+				\includegraphics[width=0.99\linewidth]{Logos/Q1_e100k}
+				\caption{Epoch $\approx100000$}
+				\label{Fig_E100k}
+			\end{subfigure}
+		\end{center}
+		
+		\caption{Neural network with two independent features and noise of 50\% for three different epochs.}
+		\label{Fig_Epochs}
+	\end{figure}
+	
+    The neural network (NN) was left running to an epoch of 100000 to see how the training progressed, the results ae showcased in \Cref{Fig_Epochs}. It was seen that once the NN reached approximately an Epoch of 1000 (see \Cref{Fig_E1k}) the classification was divided in a pattern resembling a chequerboard, achieving the best results. Nonetheless, as it increased to approximately 10000 (see \Cref{Fig_E10k}) it started filtrating the noise data inside each chequerboard, creating more defined islands of data, starting to effectively over-fit the data. Stagnation was perceived in the NN after reaching approximately an epoch of 20000 (not shown) as no further changes occurred, as the classification and losses remained constant. Later, as the epoch reached approximately 40000 (not shown), the test and training losses slowly increased further, and the NN started over-fitting more the data as it was able to classify some points in the middle. However, this over-fitting was not so extensive as it remained practically constant until it reached and epoch of approximately 100000 (see \Cref{Fig_E100k}).
     
-    
+    In conclusion, the best results are achieve for an epoch of 1000 given that it has the lowest test and training losses.
 \end{respuesta}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,6 +88,37 @@ Apply L2 regularization to reduce overfitting. Try low and high regularization r
 \begin{respuesta}
 	
 	
+	\begin{figure}[!htpb]
+		\begin{subfigure}{.24\textwidth}
+			\centering
+			\includegraphics[width=0.99\linewidth]{Logos/Q2_r0p001}
+			\caption{RR = 0.001}
+			\label{Fig_L2_r0p001}
+		\end{subfigure}
+		\begin{subfigure}{.24\textwidth}
+			\centering
+			\includegraphics[width=0.99\linewidth]{Logos/Q2_r0p003}
+			\caption{RR = 0.003}
+			\label{Fig_L2_r0p003}
+		\end{subfigure}
+		\begin{subfigure}{.24\textwidth}
+			\centering
+			\includegraphics[width=0.99\linewidth]{Logos/Q2_r0p01}
+			\caption{RR = 0.01}
+			\label{Fig_L2_r0p01}
+		\end{subfigure}
+		\begin{subfigure}{.24\textwidth}
+			\centering
+			\includegraphics[width=0.99\linewidth]{Logos/Q2_r0p03}
+			\caption{RR = 0.03}
+			\label{Fig_L2_r0p03}
+		\end{subfigure}
+		\caption{L2 regularization for a neural network with two independent features and noise of 50\% for different regularization rates (RRs) at an epoch of approximately 2000.}
+		\label{Fig_L2}
+	\end{figure}
+	
+	In \Cref{Fig_L2}, different L2 regularization rates (RRs) were performed for an approximately constant epoch of 2000. It was seen that as the RR was increased the NN had more difficulties classifying the data as when a RR of 0.1 was used, the NN stopped being able to classify. As such smaller values were better at classifying the noisy data as seen in \Cref{Fig_L2_r0p001}, but a higher value was able to better capture the chequerboard pattern (despite the noise) as seen in \Cref{Fig_L2_r0p01}. It should not come as a surprise that since the regularization L2 is the sum of weight square the classification produces a hourglass pattern.
+	
 \end{respuesta}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,7 +128,36 @@ Apply L2 regularization to reduce overfitting. Try low and high regularization r
 Compare the effects of L1 and L2 regularizations.
 
 \begin{respuesta}
-	
+
+
+	\begin{figure}[t!]
+		\begin{center}
+			\begin{subfigure}{.25\textwidth}
+				\centering
+				\includegraphics[width=0.99\linewidth]{Logos/Q3_r0p001}
+				\caption{RR = 0.001}
+				\label{Fig_L1_r0p001}
+			\end{subfigure}
+			\begin{subfigure}{.25\textwidth}
+				\centering
+				\includegraphics[width=0.99\linewidth]{Logos/Q3_r0p003}
+				\caption{RR = 0.003}
+				\label{Fig_L1_r0p003}
+			\end{subfigure}
+			\begin{subfigure}{.25\textwidth}
+				\centering
+				\includegraphics[width=0.99\linewidth]{Logos/Q3_r0p01}
+				\caption{RR = 0.01}
+				\label{Fig_L1_r0p01}
+			\end{subfigure}
+		\end{center}
+	\caption{L1 regularization for a neural network with two independent features and noise of 50\% for different regularization rates (RRs) at an epoch of approximately 2000.}
+	\label{Fig_L1}
+\end{figure}
+
+Correspondingly, in \Cref{Fig_L1}, different L1 RRs were performed for an approximately constant epoch of 2000. It was seen that as before, when the RR increases the NN has more difficulties classifying the data and in this case once it reaches 0.03, the NN is unable to classify the data. Furthermore, from \Cref{Fig_L1_r0p003} it is seen that even though it is able to classify data for RR = 0.01 the results are really poor. Compared to the L2 regularization, L1 is less flexible and requires better tuning as only two values of RR (0.001 and 0.003) provide a good enough classification. As L1 is the sum of absolute weight values it is clear that this simple approach is not ideal.
+
+It is now clear that L2 regularization should be preferred over L1, as it promotes a more stable and generalizable regularization.
 
 \end{respuesta}
 

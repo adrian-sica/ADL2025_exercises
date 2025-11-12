@@ -59,7 +59,7 @@
 \else % XeLaTeX
 \fi
 \RequirePackage[T1]{fontenc}
-\RequirePackage[spanish,es-noitemize]{babel}
+\RequirePackage[english]{babel}
 \RequirePackage{xcolor}
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{enumitem}

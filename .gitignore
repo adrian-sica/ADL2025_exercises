@@ -16,3 +16,6 @@
 *.toc
 *.bcf
 *.run.xml
+# To ignore output files and others
+*.h5
+*.csv

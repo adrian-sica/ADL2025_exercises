@@ -19,3 +19,7 @@
 # To ignore output files and others
 *.h5
 *.csv
+*.txt
+*.npy
+*.keras
+*.zip
